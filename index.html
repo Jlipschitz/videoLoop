@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Fullscreen Brand Video Loop">
+    <title>
+        OQ Fullscreen Video
+    </title>
+    <script>
+        function toggleFullScreen() {
+            if (!document.fullscreenElement && // alternative standard method
+                !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) { // current working methods
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                } else if (document.documentElement.msRequestFullscreen) {
+                    document.documentElement.msRequestFullscreen();
+                } else if (document.documentElement.mozRequestFullScreen) {
+                    document.documentElement.mozRequestFullScreen();
+                } else if (document.documentElement.webkitRequestFullscreen) {
+                    document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                }
+            }
+        }
+        document.addEventListener("keydown", function(e) { //enter key
+            if (e.keyCode == 13) {
+                toggleFullScreen();
+            }
+        }, false);
+
+    </script>
+    <style>
+        video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -100;
+            /* Replace video link with your own */
+            background: url(SampleVideo_1280x720_1mb.mp4)  no-repeat; 
+            background-size: cover;
+        }
+        
+        html {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <video id="oqVid" controls loop>
+        <!-- Replace video link with your own -->
+  <source src="SampleVideo_1280x720_1mb.mp4" type="video/mp4"> 
+  Your browser does not support the video tag. <!-- only displays if error or not supported -->
+</video>
+
+</body>
+
+</html>
